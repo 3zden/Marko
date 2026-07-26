@@ -3,11 +3,17 @@ import argparse
 import html
 import os
 import sys
+import time
 import webbrowser
 from http.server import BaseHTTPRequestHandler, HTTPServer
+from pathlib import Path
 
 import markdown
 from pygments.formatters import HtmlFormatter
+
+STATE_DIR = Path(os.path.expanduser("~/.local/state/marko"))
+WELCOME_MARKER = STATE_DIR / "welcomed"
+SPARKLES = "✻✽✢✦✧"
 
 PAGE_TEMPLATE = """<!doctype html>
 <html>
@@ -111,6 +117,41 @@ def render(filepath):
     )
 
 
+def _spin(text, duration, done_text=None):
+    """A short sparkle-spinner, in the vein of Claude Code's startup flourish."""
+    if not sys.stdout.isatty():
+        print(text)
+        return
+    end = time.time() + duration
+    frame = 0
+    sys.stdout.write("\033[?25l")  # hide cursor
+    try:
+        while time.time() < end:
+            glyph = SPARKLES[frame % len(SPARKLES)]
+            sys.stdout.write(f"\r\033[36m{glyph}\033[0m {text}\033[K")
+            sys.stdout.flush()
+            time.sleep(0.08)
+            frame += 1
+        sys.stdout.write(f"\r\033[32m✔\033[0m {done_text or text}\033[K\n")
+    finally:
+        sys.stdout.write("\033[?25h")  # show cursor
+        sys.stdout.flush()
+
+
+def welcome_animation():
+    """One-time splash on first run — pip has no reliable post-install hook for
+    console-script wheels, so first launch stands in for 'after installing'."""
+    STATE_DIR.mkdir(parents=True, exist_ok=True)
+    if WELCOME_MARKER.exists():
+        return
+    _spin("Welcome to Marko", duration=1.2)
+    WELCOME_MARKER.touch()
+
+
+def launch_animation(filename):
+    _spin(f"Rendering {filename}", duration=0.5)
+
+
 def make_handler(filepath):
     class Handler(BaseHTTPRequestHandler):
         def do_GET(self):
@@ -147,6 +188,9 @@ def main():
     filepath = os.path.abspath(args.file)
     if not os.path.isfile(filepath):
         parser.error(f"no such file: {args.file}")
+
+    welcome_animation()
+    launch_animation(os.path.basename(filepath))
 
     server = HTTPServer(("127.0.0.1", args.port), make_handler(filepath))
     port = server.server_address[1]

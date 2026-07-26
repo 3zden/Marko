@@ -9,6 +9,7 @@ A lightweight GitHub-flavored Markdown viewer with Mermaid diagram support and l
 - Live preview: the page polls the file's mtime and reloads automatically on save
 - Dark/light theme via `prefers-color-scheme`, which tracks the system GTK theme on Fedora/GNOME
 - Opens in your default browser — no bundled webview
+- A small sparkle-spinner animation plays on first run (welcome splash) and on every launch, in the style of Claude Code's startup flourish. Skipped automatically when output isn't a terminal.
 
 ## Install
 
