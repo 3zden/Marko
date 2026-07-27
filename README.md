@@ -2,6 +2,8 @@
 
 A lightweight GitHub-flavored Markdown viewer with Mermaid diagram support and live reload. Built as a small Python CLI instead of an Electron/Tauri app — no Node or Rust toolchain, no packaging pipeline, just `pip install`.
 
+![Markko rendering a Mermaid diagram in dark mode](screenshot.png)
+
 ## Features
 
 - GFM: tables, task lists, strikethrough, footnotes, fenced code blocks with syntax highlighting (Pygments)
