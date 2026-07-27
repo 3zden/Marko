@@ -14,6 +14,22 @@ from pygments.formatters import HtmlFormatter
 STATE_DIR = Path(os.path.expanduser("~/.local/state/marko"))
 WELCOME_MARKER = STATE_DIR / "welcomed"
 SPARKLES = "✻✽✢✦✧"
+PURPLE = "\033[38;5;141m"
+RESET = "\033[0m"
+
+# ponytail: hand-generated once from a small pixel-font script and pasted here as a
+# constant — shipping a font renderer for one static banner would be overkill.
+BANNER = """    _..._
+  .:::::::.      ,___,
+ :::::::::::     (o,o)
+ `:::::::::'     (")(")
+    `'''
+
+██      ██   ██████   ████████   ██      ██   ██████   ██ ██
+████  ████ ██      ██ ██      ██ ██    ██   ██    ██   ██ ██
+██  ██  ██ ██████████ ████████   ██████     ██      ██ ██ ██
+██      ██ ██      ██ ██    ██   ██    ██   ██      ██
+██      ██ ██      ██ ██      ██ ██      ██   ██████   ██ ██"""
 
 PAGE_TEMPLATE = """<!doctype html>
 <html>
@@ -144,7 +160,10 @@ def welcome_animation():
     STATE_DIR.mkdir(parents=True, exist_ok=True)
     if WELCOME_MARKER.exists():
         return
-    _spin("Welcome to Marko", duration=1.2)
+    if sys.stdout.isatty():
+        print(f"{PURPLE}{BANNER}{RESET}\n")
+    else:
+        print(BANNER + "\n")
     WELCOME_MARKER.touch()
 
 
