@@ -17,7 +17,7 @@ SPARKLES = "✻✽✢✦✧"
 PURPLE = "\033[38;5;141m"
 RESET = "\033[0m"
 
-# ponytail: hand-generated once from a small pixel-font script and pasted here as a
+# hand-generated once from a small pixel-font script and pasted here as a
 # constant — shipping a font renderer for one static banner would be overkill.
 BANNER = """         /`\\  ___  /`\\
          \\d `"\\:/"` b/
@@ -199,7 +199,7 @@ def make_handler(filepath):
             self.wfile.write(payload)
 
         def log_message(self, *args):
-            pass  # ponytail: silent by default, add --verbose to wire this to stderr if needed
+            pass  # silent by default, add --verbose to wire this to stderr if needed
 
     return Handler
 
