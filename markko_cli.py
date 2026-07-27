@@ -1,4 +1,4 @@
-"""marko: a lightweight GFM + Mermaid markdown viewer for the terminal-to-browser pipeline."""
+"""markko: a lightweight GFM + Mermaid markdown viewer for the terminal-to-browser pipeline."""
 import argparse
 import html
 import os
@@ -11,7 +11,7 @@ from pathlib import Path
 import markdown
 from pygments.formatters import HtmlFormatter
 
-STATE_DIR = Path(os.path.expanduser("~/.local/state/marko"))
+STATE_DIR = Path(os.path.expanduser("~/.local/state/markko"))
 WELCOME_MARKER = STATE_DIR / "welcomed"
 SPARKLES = "✻✽✢✦✧"
 PURPLE = "\033[38;5;141m"
@@ -38,11 +38,11 @@ BANNER = """         /`\\  ___  /`\\
    /jgs  \\=/\\=/ \\=/\\=/     \\
           `  `   `  `
 
-██      ██   ██████   ████████   ██      ██   ██████   ██ ██
-████  ████ ██      ██ ██      ██ ██    ██   ██    ██   ██ ██
-██  ██  ██ ██████████ ████████   ██████     ██      ██ ██ ██
-██      ██ ██      ██ ██    ██   ██    ██   ██      ██
-██      ██ ██      ██ ██      ██ ██      ██   ██████   ██ ██"""
+██      ██   ██████   ████████   ██      ██ ██      ██   ██████   ██ ██
+████  ████ ██      ██ ██      ██ ██    ██   ██    ██   ██      ██ ██ ██
+██  ██  ██ ██████████ ████████   ██████     ██████     ██      ██ ██ ██
+██      ██ ██      ██ ██    ██   ██    ██   ██    ██   ██      ██
+██      ██ ██      ██ ██      ██ ██      ██ ██      ██   ██████   ██ ██"""
 
 PAGE_TEMPLATE = """<!doctype html>
 <html>
@@ -206,7 +206,7 @@ def make_handler(filepath):
 
 def main():
     parser = argparse.ArgumentParser(
-        prog="marko", description="Lightweight GFM + Mermaid markdown viewer"
+        prog="markko", description="Lightweight GFM + Mermaid markdown viewer"
     )
     parser.add_argument("file", help="Markdown file to view")
     parser.add_argument(
@@ -227,7 +227,7 @@ def main():
     server = HTTPServer(("127.0.0.1", args.port), make_handler(filepath))
     port = server.server_address[1]
     url = f"http://127.0.0.1:{port}/"
-    print(f"marko: serving {args.file} at {url} (Ctrl+C to stop)")
+    print(f"markko: serving {args.file} at {url} (Ctrl+C to stop)")
 
     if not args.no_open:
         webbrowser.open(url)
@@ -235,7 +235,7 @@ def main():
     try:
         server.serve_forever()
     except KeyboardInterrupt:
-        print("\nmarko: stopped")
+        print("\nmarkko: stopped")
         sys.exit(0)
 
 

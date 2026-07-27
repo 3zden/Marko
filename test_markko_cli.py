@@ -1,7 +1,7 @@
 import os
 import tempfile
 
-from marko_cli import render
+from markko_cli import render
 
 SAMPLE = """\
 # Title

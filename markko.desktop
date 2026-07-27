@@ -1,8 +1,8 @@
 [Desktop Entry]
 Type=Application
-Name=Marko
+Name=Markko
 Comment=Lightweight GFM + Mermaid markdown viewer
-Exec=marko %f
+Exec=markko %f
 Icon=text-markdown
 Terminal=false
 MimeType=text/markdown;text/x-markdown;

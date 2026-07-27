@@ -1,4 +1,4 @@
-# Marko
+# Markko
 
 A lightweight GitHub-flavored Markdown viewer with Mermaid diagram support and live reload. Built as a small Python CLI instead of an Electron/Tauri app — no Node or Rust toolchain, no packaging pipeline, just `pip install`.
 
@@ -9,7 +9,7 @@ A lightweight GitHub-flavored Markdown viewer with Mermaid diagram support and l
 - Live preview: the page polls the file's mtime and reloads automatically on save
 - Dark/light theme via `prefers-color-scheme`, which tracks the system GTK theme on Fedora/GNOME
 - Opens in your default browser — no bundled webview
-- First run prints a big purple "MARKO!!" ASCII banner with an owl; every launch after that plays a short sparkle-spinner, in the style of Claude Code's startup flourish. Both fall back to plain text when output isn't a terminal.
+- First run prints a big purple "MARKKO!!" ASCII banner with an owl; every launch after that plays a short sparkle-spinner, in the style of Claude Code's startup flourish. Both fall back to plain text when output isn't a terminal.
 
 ## Install
 
@@ -21,23 +21,23 @@ pip install .
 ## Usage
 
 ```bash
-marko notes.md                 # renders and opens in your browser, live-reloads on save
-marko notes.md --no-open       # just start the server, print the URL
-marko notes.md --port 8080     # pin the port (default: random free port)
+markko notes.md                 # renders and opens in your browser, live-reloads on save
+markko notes.md --no-open       # just start the server, print the URL
+markko notes.md --port 8080     # pin the port (default: random free port)
 ```
 
 ## Set as default app for `.md` files
 
 ```bash
-cp marko.desktop ~/.local/share/applications/
+cp markko.desktop ~/.local/share/applications/
 update-desktop-database ~/.local/share/applications
-xdg-mime default marko.desktop text/markdown
+xdg-mime default markko.desktop text/markdown
 ```
 
 ## Tests
 
 ```bash
-python test_marko_cli.py
+python test_markko_cli.py
 ```
 
 ## Notes
