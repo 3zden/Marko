@@ -1,17 +1,38 @@
 [build-system]
-requires = ["setuptools>=61.0"]
+requires = ["setuptools>=77.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "markko-viewer"
+name = "markko"
 version = "0.1.0"
-description = "Lightweight GFM + Mermaid markdown viewer"
+description = "Lightweight GitHub-flavored Markdown viewer with Mermaid diagrams and live reload"
+readme = "README.md"
 requires-python = ">=3.9"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "3zden" }]
+keywords = ["markdown", "mermaid", "viewer", "preview", "cli", "gfm", "live-reload"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Documentation",
+    "Topic :: Text Processing :: Markup :: Markdown",
+    "Topic :: Utilities",
+]
 dependencies = [
     "markdown>=3.6",
     "pymdown-extensions>=10.0",
     "pygments>=2.17",
 ]
+
+[project.urls]
+Homepage = "https://github.com/3zden/Markko"
+Source = "https://github.com/3zden/Markko"
+Issues = "https://github.com/3zden/Markko/issues"
 
 [project.scripts]
 markko = "markko_cli:main"

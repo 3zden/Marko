@@ -2,7 +2,7 @@
 
 A lightweight GitHub-flavored Markdown viewer with Mermaid diagram support and live reload. Built as a small Python CLI instead of an Electron/Tauri app — no Node or Rust toolchain, no packaging pipeline, just `pip install`.
 
-![Markko rendering a Mermaid diagram in dark mode](screenshot.png)
+![Markko rendering a Mermaid diagram in dark mode](https://raw.githubusercontent.com/3zden/Markko/main/screenshot.png)
 
 ## Features
 
@@ -16,7 +16,13 @@ A lightweight GitHub-flavored Markdown viewer with Mermaid diagram support and l
 ## Install
 
 ```bash
-python3 -m venv .venv && source .venv/bin/activate   # or install --user without a venv
+pip install markko
+```
+
+Or from a clone:
+
+```bash
+python3 -m venv .venv && source .venv/bin/activate
 pip install .
 ```
 
